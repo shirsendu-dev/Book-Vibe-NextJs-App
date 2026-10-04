@@ -1,0 +1,44 @@
+import BookCard from "./BookCard";
+
+const getBooks = async () => {
+  const response = await fetch(
+    "http://localhost:3000/booksData.json"
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
+const Books = async () => {
+  const books = await getBooks();
+
+  return (
+    <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+
+      {/* Heading */}
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl font-bold text-[#131313] sm:text-4xl">
+          Books
+        </h2>
+
+        <p className="mx-auto mt-3 max-w-xl text-[#131313]/60">
+          Explore our collection and discover your next favorite book.
+        </p>
+      </div>
+
+      {/* Books Grid */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {books.slice(0,6).map((book:Book) => (
+          <BookCard
+            key={book.bookId}
+            book={book}
+          />
+        ))}
+      </div>
+
+    </section>
+  );
+};
+
+export default Books;
