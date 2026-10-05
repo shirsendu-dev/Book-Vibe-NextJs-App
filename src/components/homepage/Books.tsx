@@ -1,26 +1,46 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Book } from "@/types/bookType";
 import BookCard from "./BookCard";
 
-const getBooks = async () => {
+const Books = () => {
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+  useEffect(() => {
+    const getBooks = async () => {
+      try {
+        const response = await fetch("/booksData.json");
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch books");
+        if (!response.ok) {
+          throw new Error("Failed to fetch books");
+        }
+
+        const data: Book[] = await response.json();
+
+        setBooks(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getBooks();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="py-20 text-center">
+        Loading books...
+      </div>
+    );
   }
-  const data = await response.json();
-
-  return data;
-};
-
-const Books = async () => {
-  const books = await getBooks();
 
   return (
-
     <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
 
-      {/* Heading */}
       <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold text-[#131313] sm:text-4xl">
           Books
@@ -31,9 +51,8 @@ const Books = async () => {
         </p>
       </div>
 
-      {/* Books Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {books.slice(0, 6).map((book: Book) => (
+        {books.slice(0, 6).map((book) => (
           <BookCard
             key={book.bookId}
             book={book}
