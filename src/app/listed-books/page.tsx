@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { Book } from "@/types/bookType";
 import BookCard from "@/components/homepage/BookCard";
 import BookListCard from "@/components/listedBooks/BookListCard";
+import { IBookContext } from "@/context/BookContext";
 
 
 const ListedBookPage = () => {

@@ -5,12 +5,13 @@ import { Book } from "@/types/bookType";
 import React, { useContext } from 'react';
 import { toast } from "react-toastify";
 
+
+
 const ReadButton = ({ book }: { book: Book }) => {
 
     const {readBooks, setReadBooks} = useContext(BooksContext);
 
     const handleReadBook = () => {
-        // console.log('Read Book btn triggered', book);
 
         setReadBooks([...readBooks, book]);
 

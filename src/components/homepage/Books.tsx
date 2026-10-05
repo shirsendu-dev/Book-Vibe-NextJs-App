@@ -1,9 +1,10 @@
+import { Book } from "@/types/bookType";
 import BookCard from "./BookCard";
 
 const getBooks = async () => {
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
-  
+
   if (!response.ok) {
     throw new Error("Failed to fetch books");
   }
@@ -16,6 +17,7 @@ const Books = async () => {
   const books = await getBooks();
 
   return (
+
     <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
 
       {/* Heading */}
