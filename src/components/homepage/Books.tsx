@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Book } from "@/types/bookType";
-import BookCard from "./BookCard";
+import BookCard from "@/components/homepage/BookCard";
 
-const Books = () => {
+const BooksPage = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const Books = () => {
 
         setBooks(data);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching books:", error);
       } finally {
         setLoading(false);
       }
@@ -31,37 +31,27 @@ const Books = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="py-20 text-center">
-        Loading books...
-      </div>
-    );
+    return <p className="py-20 text-center">Loading books...</p>;
   }
 
   return (
     <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-
       <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold text-[#131313] sm:text-4xl">
-          Books
-        </h2>
-
-        <p className="mx-auto mt-3 max-w-xl text-[#131313]/60">
-          Explore our collection and discover your next favorite book.
-        </p>
+        <h1 className="text-3xl font-bold sm:text-4xl">
+          All Books
+        </h1>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {books.slice(0, 6).map((book) => (
+        {books.map((book) => (
           <BookCard
             key={book.bookId}
             book={book}
           />
         ))}
       </div>
-
     </section>
   );
 };
 
-export default Books;
+export default BooksPage;
