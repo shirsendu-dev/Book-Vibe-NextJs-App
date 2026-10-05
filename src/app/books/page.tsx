@@ -1,47 +1,58 @@
-import BookCard from "@/components/homepage/BookCard";
+import { headers } from "next/headers";
 import { Book } from "@/types/bookType";
+import BookCard from "@/components/homepage/BookCard";
 
+// Do not prerender this page during build
+export const dynamic = "force-dynamic";
 
-const getBooks = async () => {
+const getBooks = async (): Promise<Book[]> => {
+  const headersList = await headers();
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+  const host = headersList.get("host");
+  const protocol =
+    headersList.get("x-forwarded-proto") || "http";
+
+  if (!host) {
+    throw new Error("Unable to determine current host");
+  }
+
+  const baseUrl = `${protocol}://${host}`;
+
+  const response = await fetch(
+    `${baseUrl}/booksData.json`,
+    {
+      cache: "no-store",
+    }
+  );
+
   if (!response.ok) {
     throw new Error("Failed to fetch books");
   }
-  const data = await response.json();
 
-  return data;
+  return response.json();
 };
 
-const Books = async () => {
+const BooksPage = async () => {
   const books = await getBooks();
 
   return (
-    <section className="container mx-auto px-4 py-10 sm:px-6 lg:px-8">
-
-      {/* Heading */}
-      <div className="mb-10 text-center py-10 px-5 bg-mauve-200 rounded-2xl shadow-sm">
-        <h2 className="text-3xl font-bold text-[#131313] sm:text-4xl">
+    <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mb-10 text-center">
+        <h1 className="text-3xl font-bold text-[#131313] sm:text-4xl">
           All Books
-        </h2>
-
-        {/* <p className="mx-auto mt-3 max-w-xl text-[#131313]/60">
-          Explore our collection and discover your next favorite book.
-        </p> */}
+        </h1>
       </div>
 
-      {/* Books Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {books.map((book: Book) => (
+        {books.map((book) => (
           <BookCard
             key={book.bookId}
             book={book}
           />
         ))}
       </div>
-
     </section>
   );
 };
 
-export default Books;
+export default BooksPage;
