@@ -25,7 +25,7 @@ const Navbar = () => {
     },
   ];
 
-  const isActive = (href:string) => {
+  const isActive = (href: string) => {
     if (href === "/") {
       return pathname === "/";
     }
@@ -73,11 +73,10 @@ const Navbar = () => {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className={`block rounded-lg px-4 py-3 font-medium transition-all ${
-                          isActive(link.href)
+                        className={`block rounded-lg px-4 py-3 font-medium transition-all ${isActive(link.href)
                             ? "border border-[#23BE0A] text-[#23BE0A]"
                             : "border border-transparent text-[#131313]/80 hover:bg-gray-50"
-                        }`}
+                          }`}
                       >
                         {link.name}
                       </Link>
@@ -107,7 +106,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="whitespace-nowrap text-xl font-bold text-[#131313] sm:text-2xl lg:text-[28px]"
+              className="whitespace-nowrap text-xl font-bold text-[#131313] sm:text-2xl lg:text-[28px] font-[Playfair_Display]"
             >
               Book Vibe
             </Link>
@@ -120,11 +119,10 @@ const Navbar = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`flex min-h-[52px] items-center justify-center rounded-lg border px-5 text-base font-medium transition-all duration-200 xl:px-6 ${
-                      isActive(link.href)
+                    className={`flex min-h-[52px] items-center justify-center rounded-lg border px-5 text-base font-medium transition-all duration-200 xl:px-6 ${isActive(link.href)
                         ? "border-[#000] text-[#000]"
                         : "border-transparent text-[#131313]/80 hover:border-[#23BE0A]/30 hover:text-[#23BE0A]"
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>

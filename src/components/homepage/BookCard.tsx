@@ -27,15 +27,19 @@ const BookCard = ({ book }: { book: Book }) => {
     <div className="group rounded-2xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
       {/* Book Image */}
-      <div className="relative flex h-[280px] items-center justify-center overflow-hidden rounded-xl bg-[#F3F3F3] p-8">
-        <Image
-          src={image}
-          alt={bookName}
-          width={180}
-          height={240}
-          className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
+      <Link href={`/books/${bookId}`}>
+        <div className="relative flex h-[280px] items-center justify-center overflow-hidden rounded-xl bg-[#F3F3F3] p-8">
+
+          <Image
+            src={image}
+            alt={bookName}
+            width={180}
+            height={240}
+            className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      </Link>
+
 
       {/* Content */}
       <div className="pt-5 font-[Playfair_Display]">
@@ -53,9 +57,11 @@ const BookCard = ({ book }: { book: Book }) => {
         </div>
 
         {/* Book Name */}
-        <h3 className="mb-2 text-xl font-bold text-[#131313]">
+        <Link href={`/books/${bookId}`}>
+        <h3 className="mb-2 text-xl font-bold text-[#131313] transition-all hover:font-medium">
           {bookName}
         </h3>
+        </Link>
 
         {/* Author */}
         <p className="text-sm font-medium text-[#131313]/70">

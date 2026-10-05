@@ -17,7 +17,7 @@ const BookListCard = ({ book }: { book: Book }) => {
     } = book;
 
     return (
-        <div className="rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:shadow-lg">
+        <div className="rounded-2xl border border-gray-200 bg-white p-5 space-y-10 transition duration-300 hover:shadow-lg">
             <div className="flex flex-col gap-6 sm:flex-row">
 
                 {/* Book Image */}
