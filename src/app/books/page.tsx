@@ -3,10 +3,11 @@ import { Book } from "@/types/bookType";
 
 
 const getBooks = async () => {
-  const response = await fetch(
-    "http://localhost:3000/booksData.json"
-  );
 
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch books");
+  }
   const data = await response.json();
 
   return data;
@@ -31,7 +32,7 @@ const Books = async () => {
 
       {/* Books Grid */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {books.map((book:Book) => (
+        {books.map((book: Book) => (
           <BookCard
             key={book.bookId}
             book={book}
