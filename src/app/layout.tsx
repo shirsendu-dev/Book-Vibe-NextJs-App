@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import BooksProvider from "@/context/BookContext";
 import { ToastContainer } from "react-toastify";
+import { ScrollBehavior } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,10 +37,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en" data-theme="light"
       className={`${playFair.className} ${workSans.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col" cz-shortcut-listen="false">
+      <body className="min-h-full flex flex-col scroll-smooth" cz-shortcut-listen="false">
         <BooksProvider>
+
           <Navbar></Navbar>
           {children}
+
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -53,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             theme="light"
             // transition={Bounce}
           />
+          
         </BooksProvider>
       </body>
     </html>

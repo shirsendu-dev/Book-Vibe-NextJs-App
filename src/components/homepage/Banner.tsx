@@ -1,5 +1,6 @@
 import Image from "next/image";
 import BannerImage from "@/assets/banner-image.png";
+import Link from "next/link";
 
 const Banner = () => {
     return (
@@ -23,11 +24,13 @@ const Banner = () => {
                         </h1>
 
                         <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-                            <button className="btn bg-[#1FA80A] text-black text-[16px] font-medium rounded-[10px] px-6 py-7">
-                                View the List
-                            </button>
+                            <Link href={`/#library`}>
+                                <button className="btn bg-[#1FA80A] text-black text-[16px] font-medium rounded-[10px] px-6 py-7">
+                                    View the List
+                                </button>
+                            </Link>
 
-                           
+
                         </div>
                     </div>
 

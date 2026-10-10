@@ -35,7 +35,7 @@ const BooksPage = () => {
   }
 
   return (
-    <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8" id="library">
       <div className="mb-10 text-center">
         <h1 className="text-3xl font-bold sm:text-4xl">
           All Books
