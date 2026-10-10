@@ -71,7 +71,7 @@ const PagesReadPage = () => {
             <div className="container mx-auto">
                 <div className="mb-10 text-center py-10 px-5 bg-mauve-200 rounded-2xl shadow-sm">
                     <h2 className="text-3xl font-bold text-[#131313] sm:text-4xl">
-                        Listed Books
+                        Pages to Read
                     </h2>
                 </div>
 
