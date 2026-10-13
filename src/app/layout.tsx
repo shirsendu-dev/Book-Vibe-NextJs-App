@@ -35,10 +35,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en" data-theme="light"
-      className={`${playFair.className} ${workSans.className} h-full antialiased`
+      className={`${playFair.className} ${workSans.className} h-full antialiased scroll-smooth`
     }
     >
-      <body className="min-h-full flex flex-col scroll-smooth" cz-shortcut-listen="false" >
+      <body className="min-h-full flex flex-col" cz-shortcut-listen="false" >
         <BooksProvider>
 
           <Navbar></Navbar>
